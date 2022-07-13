@@ -1,16 +1,28 @@
+using Microsoft.Net.Http.Headers;
+using Movies.Client.ApiServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IMovieApiService, MovieApiService>();
+
+// builder.Services.AddHttpClient("IDPClient", client =>
+// {
+//  client.BaseAddress = new Uri("https://localhost:5005/");
+//  client.DefaultRequestHeaders.Clear();
+//  client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+// });
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+  app.UseExceptionHandler("/Home/Error");
+  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+  app.UseHsts();
 }
 
 app.UseHttpsRedirection();
