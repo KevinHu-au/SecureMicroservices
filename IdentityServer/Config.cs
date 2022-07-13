@@ -59,7 +59,7 @@ namespace IdentityServer
     public static IEnumerable<ApiScope> ApiScopes =>
        new ApiScope[]
        {
-               new ApiScope("movieAPI", "Movie API")
+            new ApiScope("movieAPI", "Movie API")
        };
 
     public static IEnumerable<ApiResource> ApiResources =>
