@@ -18,6 +18,14 @@ builder.Services.AddAuthentication("Bearer")
                     ValidateAudience = false
                   };
                 });
+
+
+builder.Services.AddAuthorization(options =>
+{
+  //Add the authorization policy to allow only the user claims contains claim type of 'client_id' with claim vlue of 'movieClient'
+  options.AddPolicy("ClientIdPolicy", policy => policy.RequireClaim("client_id", "movieClient"));
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
